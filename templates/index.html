@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Payment Prediction Model</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fc;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .landing {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #4A90E2;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        /* Form Styles */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #4A90E2;
+            box-shadow: 0 0 8px rgba(74, 144, 226, 0.2);
+        }
+
+        button[type="submit"] {
+            padding: 12px;
+            background-color: #4A90E2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #357ABD;
+        }
+
+        /* Prediction result */
+        .prediction {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #e8f4f9;
+            color: #333;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            animation: fadeIn 1s ease-out;
+        }
+
+        /* Animation for fading in the result */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .prediction.success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .prediction.error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .landing {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+
+            input[type="text"] {
+                font-size: 14px;
+            }
+
+            button[type="submit"] {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="landing">
+        <h1>Loan Payment Prediction Model</h1>
+
+        <form action="https://loan-prediction-bifs.onrender.com/predict" method="post">
+            <input type="text" name="int_rate" placeholder="Interest Rate" required="required" />
+            <input type="text" name="dti" placeholder="Debt to Income Ratio" required="required" />
+            <input type="text" name="annual_inc" placeholder="Annual Income" required="required" />
+            <input type="text" name="loan_amnt" placeholder="Loan Amount" required="required" />
+            <input type="text" name="inq_last_6mnths" placeholder="Loan Inquiry in last 6 months" required="required" />
+            <input type="text" name="mths_since_last_delinq" placeholder="Months since last delinquency" required="required" />
+
+            <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+        </form>
+
+        <br>
+        <br>
+        <div class="prediction {{ prediction_class }}">
+            {{ prediction_text }}
+        </div>
+    </div>
+
+</body>
+
+</html>
