@@ -9,6 +9,7 @@ Clone the repository to your local machine (make sure u have git installed):
 
 ### 2. Eun docker locally
 docker build -t loan-predictor .
+
 docker run -p 5000:5000 loan-predictor
 
 
